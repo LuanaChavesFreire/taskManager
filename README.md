@@ -4,7 +4,7 @@ A simple and intuitive **Task Manager** application built with **React**, design
 
 ## 🚀 Features
 
-- Create, edit, and delete tasks  
+- Create and delete tasks  
 - Mark tasks as completed  
 - Clean and responsive user interface  
 - Component-based architecture using React  

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import AddTask from "./components/addTask/addTask.jsx";
+import {v4} from "uuid";
+import TaskInput from "./components/addTask/taskInput.jsx";
 import TaskList from "./components/taskList/taskList.jsx";
 
 function App() {
@@ -33,13 +34,32 @@ function App() {
     });
     setTasks(newTask)
   }
+
+  function delTask(taskId) {
+    const newTaskList = tasks.filter(tasks => (tasks.id !== taskId));
+    setTasks(newTaskList);
+  }
+
+  function addTask(tittle, description) {
+          if (!tittle.trim() || !description.trim()) {
+            return alert("Please fill all the fields properly");
+          }
+    const newTask = {
+      id: v4(),
+      tittle,
+      description,
+      complested: false,
+    }
+    setTasks([...tasks, newTask])
+  }
+
   return (
     <>
-      <div>
-        <h1 className="">Task Menager</h1>
+      <div className="container mx-auto p-4">
+        <h1>Task Menager</h1>
         <div>
-          <AddTask />
-          <TaskList tasks={tasks} onTaskClick={onTaskClick} />
+          <TaskInput tasks={tasks} addTask={addTask} />
+          <TaskList tasks={tasks} onTaskClick={onTaskClick} delTask={delTask} />
         </div>
       </div>
     </>
